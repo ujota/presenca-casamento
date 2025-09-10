@@ -196,62 +196,32 @@
                 </h2>
             </div>
             <div class="card-body">
-                <form action="https://docs.google.com/forms/d/e/1FAIpQLSe1xLBhhdLWmSt5HuH70POEqQTebubcXCuYynZ5Zet-c9X8qQ/formResponse" method="POST" target="_blank" id="presenca-form" autocomplete="off" onsubmit="document.getElementById('form-msg').textContent='Presença enviada!';">
+                <form id="presenca-form" autocomplete="off">
                     <div class="field">
                         <label for="nome">Nome</label>
-                        <input id="nome" name="entry.1893325619" type="text" placeholder="Digite seu nome" required autocomplete="name" />
+                        <input id="nome" name="nome" type="text" placeholder="Digite seu nome" required autocomplete="name" />
                     </div>
                     <div class="actions">
-                        <button type="submit">Enviar</button>
+                        <button  type="submit" style="text-transform: uppercase;">Confirmar presença!</button>
                     </div>
                 </form>
                 <div class="helper" id="form-msg">Preencha seu nome e clique em Enviar.</div>
-    <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwMVyfrDJ3KRzrF6kAoKGylq3tWXYL7mvLR7n3agEgXaCSze2iT1nnfnWmrDmn2j9Lu/exec';
-
-    async function carregarPresencas() {
-        const lista = document.getElementById('lista-presencas');
-        lista.innerHTML = '<li style="color:#aaa;">Carregando...</li>';
-        try {
-            const resp = await fetch(API_URL);
-            const nomes = await resp.json();
-            if (Array.isArray(nomes) && nomes.length > 0) {
-                lista.innerHTML = nomes.map(n => `<li style='padding:2px 0;'>${n.replace(/</g,'&lt;')}</li>`).join('');
-            } else {
-                lista.innerHTML = '<li style="color:#aaa;">Nenhum nome enviado ainda.</li>';
-            }
-        } catch {
-            lista.innerHTML = '<li style="color:#e11d48;">Erro ao carregar lista.</li>';
-        }
-    }
-
-    document.getElementById('presenca-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const nome = document.getElementById('nome').value.trim();
-        const msg = document.getElementById('form-msg');
-        if (!nome) return;
-        msg.textContent = 'Enviando...';
-        try {
-            const resp = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome })
-            });
-            const data = await resp.json();
-            if (data.status === 'ok') {
-                msg.textContent = 'Presença confirmada!';
-                document.getElementById('presenca-form').reset();
-                carregarPresencas();
-            } else {
-                msg.textContent = 'Erro ao enviar. Tente novamente.';
-            }
-        } catch {
-            msg.textContent = 'Erro de conexão. Tente novamente.';
-        }
-    });
-
-    carregarPresencas();
-    </script>
+                <script>
+                document.getElementById('presenca-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var nome = document.getElementById('nome').value.trim();
+                    var msg = document.getElementById('form-msg');
+                    if (!nome) {
+                        msg.textContent = 'Por favor, digite seu nome.';
+                        return;
+                    }
+                    msg.textContent = 'Redirecionando para o grupo do WhatsApp...';
+                    var texto = encodeURIComponent('Olá! Confirmo minha presença no casamento das lontrinhas! 🦦💍\nMeu nome: ' + nome);
+                    setTimeout(function() {
+                        window.location.href = 'https://chat.whatsapp.com/DngQWMvmFWeAoOMLy513rg?text=' + texto;
+                    }, 800);
+                });
+                </script>
             </div>
         </div>
     </div>
