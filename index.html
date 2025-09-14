@@ -252,7 +252,7 @@
         </div>
 
         <h1 class="title">Confirmar Presença</h1>
-        <p class="subtitle">Com carinho, as lontrinhas convidam você a celebrar o amor</p>
+        <p class="subtitle">Com carinho, que <strong style="color: #ea4c89;">Aline Bastos e João Pedro Silvério</strong> convidam você a celebrar o amor</p>
 
         <div class="card" role="region" aria-labelledby="titulo">
             <div class="card-header" style="display: flex; align-items: center; gap: 10px;">
@@ -273,48 +273,18 @@
                     </div>
                 </form>
                 <div class="helper" id="form-msg">Preencha seu nome e clique em Enviar.</div>
-                                <div id="modal-bg" class="modal-bg" style="display:none;">
-                                    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-                                        <button class="close-btn" id="modal-close" title="Fechar">×</button>
-                                        <h3 id="modal-title">Mensagem pronta para o grupo</h3>
-                                        <textarea id="modal-msg" readonly></textarea>
-                                        <div class="modal-actions">
-                                            <button class="copy-btn" id="modal-copy">Copiar mensagem</button>
-                                            <button class="go-btn" id="modal-go">Ir para o grupo</button>
-                                        </div>
-                                        <div id="modal-copied" style="color: #16a34a; font-size:0.95rem; margin-top:8px; display:none;">Copiado!</div>
-                                    </div>
-                                </div>
                 <div style="padding-top: 24px;"><a style="text-decoration: none; color: #d93d7a; text-transform: uppercase;" href="https://www.finalfeliz.de/joao-pedro-aline-bastos" >🎁Lista de Presente</a></div>
                 <script>
                 document.getElementById('presenca-form').addEventListener('submit', function(e) {
-                                        e.preventDefault();
-                                        var nome = document.getElementById('nome').value.trim();
-                                        var msg = document.getElementById('form-msg');
-                                        if (!nome) {
-                                                msg.textContent = 'Por favor, digite seu nome.';
-                                                return;
-                                        }
-                                        var texto = 'Olá! Confirmo minha presença no casamento! 🦦💍\nMeu nome: ' + nome;
-                                        document.getElementById('modal-msg').value = texto;
-                                        document.getElementById('modal-bg').style.display = 'flex';
-                                        document.getElementById('modal-copied').style.display = 'none';
-                                });
-
-                                // Modal logic
-                                document.getElementById('modal-copy').onclick = function() {
-                                    var ta = document.getElementById('modal-msg');
-                                    ta.select();
-                                    ta.setSelectionRange(0, 9999);
-                                    document.execCommand('copy');
-                                    document.getElementById('modal-copied').style.display = 'block';
-                                };
-                                document.getElementById('modal-go').onclick = function() {
-                                    window.location.href = 'https://chat.whatsapp.com/DngQWMvmFWeAoOMLy513rg';
-                                };
-                                document.getElementById('modal-close').onclick = function() {
-                                    document.getElementById('modal-bg').style.display = 'none';
-                                };
+                    e.preventDefault();
+                    var nome = document.getElementById('nome').value.trim();
+                    var msg = document.getElementById('form-msg');
+                    if (!nome) {
+                        msg.textContent = 'Por favor, digite seu nome.';
+                        return;
+                    }
+                    window.location.href = 'https://chat.whatsapp.com/DngQWMvmFWeAoOMLy513rg';
+                });
                 </script>
             </div>
         </div>
